@@ -7,7 +7,7 @@ import matplotlib.pyplot as pyplot
 import pickle
 from matplotlib import style
 
-df = pd.read_csv("LinRegression/student-mat.csv", sep=";")
+df = pd.read_csv("student-mat.csv", sep=";")
 
 # These are attributes (unique to each "instance"/student) except for G3 which will be removed when test/train
 data = df[["G1","G2", "G3", "studytime", "failures","health", "absences", "age"]]
@@ -37,7 +37,7 @@ for _ in range(10000):
             pickle.dump(linear, f)
 '''
 
-pickle_in = open("LinRegression/studentmodel.pickle", "rb")
+pickle_in = open("studentmodel.pickle", "rb")
 linear = pickle.load(pickle_in)
 
 print("Coefficient: ", linear.coef_)
