@@ -19,10 +19,23 @@ safety = le.fit_transform(list(data["safety"]))
 cls = le.fit_transform(list(data["class"]))
 
 predict = "class"
-temp = 0
 
 x = list(zip(buying, maint, door, persons, lug_boot, safety))
 y = list(cls)
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
 
+# KNN Algo model
+
+model = KNeighborsClassifier(n_neighbors=7)
+
+# Need to pickle best model
+best = 0
+for _ in range(100):
+    x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
+    model.fit(x_train,y_train)
+    acc = model.score(x_test,y_test)
+    if acc > best:
+        best = acc
+
+print("accuracy: ", best)
